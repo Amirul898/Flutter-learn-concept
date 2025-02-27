@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 class Button extends StatelessWidget {
   const Button({super.key});
 
+  get unit => null;
+
+  get rate => null;
+
+  set totalBill(totalBill) {}
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -11,17 +17,17 @@ class Button extends StatelessWidget {
         height: 50,
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: () {},
-
+          onPressed: () {
+            totalBill = unit * rate;
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.deepOrange,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              // side: BorderSide(color: Colors.orange.shade300, width: 2),
             ),
           ),
           child: Text(
-            "Calcualte",
+            "Calculate",
             style: TextStyle(
               color: Colors.white,
               fontSize: 22,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TotalBill extends StatelessWidget {
-  const TotalBill({super.key});
+  final double totalBill;
+
+  const TotalBill({super.key, required this.totalBill});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +16,12 @@ class TotalBill extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: Colors.deepOrange, width: 2),
         ),
-
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text("Total Bill", style: TextStyle(fontSize: 22)),
             Text(
-              "Tk 0.0",
+              "Tk $totalBill",
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,

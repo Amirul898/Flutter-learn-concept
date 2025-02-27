@@ -1,11 +1,22 @@
+import 'package:electricity_bil/author.dart';
 import 'package:electricity_bil/button.dart';
 import 'package:electricity_bil/head_section.dart';
 import 'package:electricity_bil/input_fild.dart';
+import 'package:electricity_bil/issue.dart';
 import 'package:electricity_bil/total_bill.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  double unit = 0.0;
+  double rate = 0.0;
+  double totalBill = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,38 +26,31 @@ class HomePage extends StatelessWidget {
           SizedBox(height: 20),
           headSection(),
           SizedBox(height: 50),
-          inputFild("Unit", "Enter Unit"),
+          CustomInputField(
+            hintText: "Unit",
+            labelText: 'Enter Unit',
+            onChanged: (String value) {
+              unit = double.parse(value);
+              setState(() {});
+            },
+          ),
           SizedBox(height: 20),
-          inputFild("Price", "Enter Price"),
+          CustomInputField(
+            hintText: "Rate",
+            labelText: 'Enter Rate',
+            onChanged: (String value) {
+              rate = double.parse(value);
+              setState(() {});
+            },
+          ),
           SizedBox(height: 20),
           Button(),
           SizedBox(height: 50),
-          TotalBill(),
-          SizedBox(height: 80),
+          TotalBill(totalBill: rate * unit),
+          SizedBox(height: 50),
           Author(),
-        ],
-      ),
-    );
-  }
-}
-
-class Author extends StatelessWidget {
-  const Author({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Developed by: "),
-          Text(
-            "Md. Amirul Islam",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.deepOrange,
-            ),
-          ),
+          SizedBox(height: 10),
+          Issue(),
         ],
       ),
     );
