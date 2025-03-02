@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "676678541916",
+    "project_id": "fir-c0ncept",
+    "storage_bucket": "fir-c0ncept.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:676678541916:android:2e896762a07e893a15fc99",
+        "android_client_info": {
+          "package_name": "com.example.firebase_concept"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiK6CtAQsMuf94xrUmAQgQGTkKlnWfFrA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
