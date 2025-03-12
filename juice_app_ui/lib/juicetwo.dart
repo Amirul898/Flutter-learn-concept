@@ -2,11 +2,28 @@
 import 'package:flutter/material.dart';
 
 class Juicetwo extends StatelessWidget {
-  const Juicetwo({super.key});
+  final imglist = [
+    "assets/photo/berries.jpg",
+    "assets/photo/oranges.jpeg",
+    "assets/photo/starw.jpeg",
+    "assets/photo/grapes.jpg",
+    "assets/photo/berry.webp",
+  ];
+
+  final juiceName = ["Berries", "Oranges", "StarwBery", "Grapes", "Berry"];
+
+  final price = [
+    "30/- (per Glass)",
+    "60/- (per Glass)",
+    "40/- (per Glass)",
+    "80/- (per Glass)",
+    "120/- (per Glass)",
+  ];
+
+  Juicetwo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var ImgeList = ["assets/photo/berries.jpg"];
     var size2 = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
@@ -62,15 +79,58 @@ class Juicetwo extends StatelessWidget {
 
                       SizedBox(height: size2.height * 0.05),
 
-                      ListView.builder(
-                        //   itemCount: ImgeList.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: 200,
-                            height: 250,
-                            color: Colors.redAccent,
-                          );
-                        },
+                      SizedBox(
+                        height: 600,
+                        child: GestureDetector(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: imglist.length, // মোট ১০টি আইটেম দেখাবে
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  height: 600,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: 150,
+                                        height: 200,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(imglist[index]),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(20),
+                                          ),
+                                        ),
+                                      ),
+
+                                      Text(
+                                        juiceName[index],
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+
+                                      Text(
+                                        price[index],
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ),
                     ],
                   ),

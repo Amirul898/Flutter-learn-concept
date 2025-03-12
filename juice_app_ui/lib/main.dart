@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:juice_app_ui/home_page.dart';
 import 'package:juice_app_ui/juiceTwo.dart';
 
 void main() {
