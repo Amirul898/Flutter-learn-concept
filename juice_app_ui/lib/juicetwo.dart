@@ -1,6 +1,8 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:juice_app_ui/singe_juce.dart';
 
+// ignore: must_be_immutable
 class Juicetwo extends StatelessWidget {
   final imglist = [
     "assets/photo/berries.jpg",
@@ -20,6 +22,10 @@ class Juicetwo extends StatelessWidget {
     "120/- (per Glass)",
   ];
 
+  String desc =
+      "mixed with chilled ice and griended with sponzita, picked with sot'l hands in sumine";
+
+  final location = ["Dhaka", "Chittagong", "Khulna", "Rajshahi", "Sylhet"];
   Juicetwo({super.key});
 
   @override
@@ -36,7 +42,6 @@ class Juicetwo extends StatelessWidget {
               colorBlendMode: BlendMode.darken,
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ListView(
@@ -46,7 +51,6 @@ class Juicetwo extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Icon(Icons.menu, size: 28, color: Colors.white),
                 ),
-
                 Center(
                   child: Column(
                     children: [
@@ -64,7 +68,6 @@ class Juicetwo extends StatelessWidget {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                       ),
-
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -76,60 +79,70 @@ class Juicetwo extends StatelessWidget {
                           ),
                         ),
                       ),
-
                       SizedBox(height: size2.height * 0.05),
-
                       SizedBox(
-                        height: 600,
-                        child: GestureDetector(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            itemCount: imglist.length, // মোট ১০টি আইটেম দেখাবে
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: SizedBox(
-                                  height: 600,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 150,
-                                        height: 200,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: AssetImage(imglist[index]),
-                                            fit: BoxFit.cover,
-                                          ),
-                                          borderRadius: BorderRadius.all(
-                                            Radius.circular(20),
-                                          ),
+                        height: 500,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: imglist.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder:
+                                        (context) => Singejuce(
+                                          Data: {
+                                            "BackGroundImage": imglist[index],
+                                            "JuiceName": juiceName[index],
+                                            "Price": price[index],
+                                            "Description": desc,
+                                            "Location": location[index],
+                                          },
                                         ),
-                                      ),
-
-                                      Text(
-                                        juiceName[index],
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-
-                                      Text(
-                                        price[index],
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ],
                                   ),
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      width: 200,
+                                      height: 300,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: AssetImage(imglist[index]),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(20),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      juiceName[index],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      price[index],
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              );
-                            },
-                          ),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ],
