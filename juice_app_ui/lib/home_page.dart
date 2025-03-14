@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
         children: [
           Positioned.fill(
             child: Image.asset(
-              "assets/photo/berries.jpg",
+              "assets/photo/mixed.jpeg",
               color: Colors.black54,
               fit: BoxFit.cover,
               colorBlendMode: BlendMode.darken,
