@@ -1,16 +1,7 @@
 # juice_app_ui
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+|![Image 1](https://raw.githubusercontent.com/Amirul898/Flutter-learn-concept/refs/heads/main/juice_app_ui/assets/photo/AppUIImage/JuiceAppUi_1.PNG)|![Image 2](https://raw.githubusercontent.com/Amirul898/Flutter-learn-concept/refs/heads/main/juice_app_ui/assets/photo/AppUIImage/JuiceAppUi_2.PNG)|![Image 3](https://raw.githubusercontent.com/Amirul898/Flutter-learn-concept/refs/heads/main/juice_app_ui/assets/photo/AppUIImage/JuiceAppUi_3.PNG)|![Image 4](https://raw.githubusercontent.com/Amirul898/Flutter-learn-concept/refs/heads/main/juice_app_ui/assets/photo/AppUIImage/JuiceAppUI_4.PNG)|
