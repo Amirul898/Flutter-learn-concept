@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 
 class midToursection extends StatelessWidget {
@@ -11,6 +13,8 @@ class midToursection extends StatelessWidget {
     return SizedBox(
       height: 200,
       child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
         itemCount: images.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {

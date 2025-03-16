@@ -1,8 +1,20 @@
+// ignore_for_file: non_constant_identifier_names
+// ignore: duplicate_ignore
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:travel_app_ui/app_bar_section.dart';
+import 'package:travel_app_ui/detail_page.dart';
 import 'package:travel_app_ui/mid_toursection.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
+  const Homepage({super.key});
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
   final List<String> images = [
     "Assets/beach.jpg",
     'Assets/desert.jpeg',
@@ -39,7 +51,13 @@ class Homepage extends StatelessWidget {
     'Antarctica is Earth’s southernmost continent. It contains the geographic South Pole and is situated in the Antarctic region of the Southern Hemisphere, almost entirely south of the Antarctic Circle.',
   ];
 
-  Homepage({super.key});
+  late String titlechoce;
+
+  @override
+  void initState() {
+    super.initState();
+    titlechoce = title[0];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,32 +79,123 @@ class Homepage extends StatelessWidget {
 
           midToursection(images: images, title: title),
           SizedBox(height: 20),
+          catagoryList(),
+          SizedBox(height: 20),
+          ListView.builder(
+            physics: BouncingScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: images.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.all(10),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return DetailPage(
+                            Data: {
+                              'images': images[index],
+                              "title": title[index],
+                              "Location": Location[index],
+                              "description": description[index],
+                            },
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 30,
+                            child: Container(
+                              height: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                  image: AssetImage(images[index]),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
 
-          SizedBox(
-            height: 20,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: title.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.only(right: 10),
-                  width: 100,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue.shade800,
+                          Expanded(
+                            flex: 70,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(Icons.map_outlined),
+                                      SizedBox(width: 5),
+                                      Text(Location[index]),
+                                    ],
+                                  ),
+                                  SizedBox(height: 5),
+
+                                  Text(
+                                    description[index],
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  child: Text(
-                    title[index],
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ],
+      ),
+    );
+  }
+
+  SizedBox catagoryList() {
+    return SizedBox(
+      height: 40,
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: title.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  titlechoce = title[index];
+                });
+              },
+              child: Text(
+                title[index],
+                style: TextStyle(
+                  fontSize: titlechoce == title[index] ? 18 : 16,
+                  color:
+                      titlechoce == title[index]
+                          ? Colors.black
+                          : Colors.black54,
+                  fontWeight:
+                      titlechoce == title[index]
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
